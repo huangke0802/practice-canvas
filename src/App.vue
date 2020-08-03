@@ -9,10 +9,8 @@
           background-color="#545c64"
           text-color="#fff"
           active-text-color="#ffd04b"
-          collapse
         >
           <el-menu-item :index="item.path" v-for="(item,index) in menus" :key="index">
-            <i class="el-icon-edit"></i>
             <span slot="title">{{item.title}}</span>
           </el-menu-item>
         </el-menu>
@@ -29,17 +27,43 @@ export default {
   name: "App",
   data() {
     return {
-      defaultActive: "/index",
+      defaultActive: "/gobang",
       menus: [
         { path: "/index", title: "红色正方形" },
         { path: "/citypic", title: "城市关系图" },
-        { path: "/gobang", title: "五子棋" }
+        { path: "/gobang", title: "五子棋" },
+        { path: "/svgpage", title: "svg实现" },
+        {
+          path: "/svgcitypic",
+          title: "svg实现关系图"
+        },
+        {
+          path: "/webgl",
+          title: "WebGL实现"
+        },
+        {
+          path: "/regularpolygonwebgl",
+          title: "正多边形实现"
+        },
+        {
+          path: "/lotterydraw",
+          title: "幸运转盘一"
+        },
+        {
+          path: "/RegularShap_01",
+          title: "RegularShap_01"
+        },
       ]
     };
   },
+  mounted() {
+    const { path } = this.$route;
+    this.defaultActive = path;
+  },
   methods: {
-    handleOpen(key, keyPath) {
-      this.$router.push({ path: key });
+    handleOpen(key) {
+      const { path } = this.$route;
+      path != key && this.$router.push({ path: key });
     }
   }
 };

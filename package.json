@@ -9,7 +9,8 @@
   },
   "dependencies": {
     "@vue/cli-plugin-babel": "4.1.1",
-    "element-ui": "2.13.2",
+    "element-ui": "2.13.0",
+    "less-loader": "^6.2.0",
     "vue": "^2.6.11",
     "vue-router": "3.3.4"
   },
@@ -46,5 +47,5 @@
     "not ie <= 8"
   ],
   "keywords": [],
-  "description": ""
+  "description": "The project is used for practicing canvas learning."
 }

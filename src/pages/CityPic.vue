@@ -6,14 +6,16 @@
 
 <script>
 export default {
-  name: "HelloWorld",
-  mounted(){
-
-    const dataSource = 'https://s5.ssl.qhres.com/static/b0695e2dd30daa64.json';
+  mounted() {
+    const dataSource = "https://s5.ssl.qhres.com/static/b0695e2dd30daa64.json";
 
     const TAU = 2 * Math.PI;
 
-    function draw(ctx, node, { fillStyle = 'rgba(0, 0, 0, 0.2)', textColor = 'white' } = {}) {
+    function draw(
+      ctx,
+      node,
+      { fillStyle = "rgba(0, 0, 0, 0.2)", textColor = "white" } = {}
+    ) {
       const children = node.children;
       const { x, y, r } = node;
       ctx.fillStyle = fillStyle;
@@ -27,36 +29,36 @@ export default {
       } else {
         const name = node.data.name;
         ctx.fillStyle = textColor;
-        ctx.font = '1.5rem Arial';
-        ctx.textAlign = 'center';
+        ctx.font = "1.5rem Arial";
+        ctx.textAlign = "center";
         ctx.fillText(name, x, y);
       }
     }
 
-
-    (async function () {
+    (async function() {
       const data = await (await fetch(dataSource)).json();
 
-      const regions = d3.hierarchy(data)
+      const regions = d3
+        .hierarchy(data)
         .sum(d => 1)
         .sort((a, b) => b.value - a.value);
 
-      const pack = d3.pack()
+      const pack = d3
+        .pack()
         .size([1600, 1600])
         .padding(3);
 
       const root = pack(regions);
 
-      const canvas = document.querySelector('#myCanvas');
-      const context = canvas.getContext('2d');
+      const canvas = document.querySelector("#myCanvas");
+      const context = canvas.getContext("2d");
 
       draw(context, root);
-    }());
+    })();
   }
 };
 </script>
 
 
 <style scoped>
-
 </style>
